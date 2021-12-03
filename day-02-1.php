@@ -12,9 +12,6 @@ foreach($lines as $line) {
     case 'forward':
       $x += $force;
       break;
-    case 'backward':
-      $x -= $force;
-      break;
     case 'down':
       $y += $force;
       break;
