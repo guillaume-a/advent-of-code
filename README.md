@@ -4,7 +4,17 @@ This is my attempt to solve [Advent of Code 2021](https://adventofcode.com/2021)
 
 Solutions are not optimized, and are not intended to be.
 
-Inputs are my personnal ones.
+# Inputs 
+
+In the `inputs` folder, inputs are named with the following pattern : 
+
+```
+input-[day]-[part].txt
+```
+
+Part = 0 : Input in the example.
+Part = 1 : Personnal input
+
 
 # Run php script
 
