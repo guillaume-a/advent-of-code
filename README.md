@@ -9,21 +9,31 @@ Solutions are not optimized, and are not intended to be.
 In the `inputs` folder, inputs are named with the following pattern : 
 
 ```
-input-[day]-[part].txt
+day-[day]-[dataset].txt
 ```
 
-Part = 0 : Input in the example.
-Part = 1 : Personnal input
+Where dataset can be any name.
 
+Each challenge come with `example` and `custom` datasets which corresponds to my own inputs.
+
+You can add or replace with your inputs.
+
+# Challenges
+
+In the `challenges` folder, my personnal implementation for each. Really not optimized, I just want to solve them and have fun.
 
 # Run php script
 
+`day` must be the day (two digits) follow by the part. Ex : 01-1 = day 01, part 1.
+
+`dataset` can be blank (example dataset) or corresponding to a custom dataset.
+
 Bash
 ```
-docker run --rm -v $(pwd):/app/ php:7.4-cli php app/day-01.php
+docker run --rm -v $(pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
 ```
 
 Fish
 ```
-docker run --rm -v (pwd):/app/ php:7.4-cli php app/day-01.php
+docker run --rm -v (pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
 ```

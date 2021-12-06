@@ -1,7 +1,5 @@
 <?php
 
-$lines = explode(PHP_EOL, file_get_contents(__DIR__ . '/inputs/input-03-1.txt'));
-
 $first = true;
 $sums = [];
 $half = count($lines) * .5;

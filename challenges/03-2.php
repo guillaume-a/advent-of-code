@@ -1,7 +1,5 @@
 <?php
 
-$lines = explode(PHP_EOL, file_get_contents(__DIR__ . '/inputs/input-03-1.txt'));
-
 function get_most_common_bit($lines, $position) {
   $half = count($lines) * .5;
   $sum = 0;

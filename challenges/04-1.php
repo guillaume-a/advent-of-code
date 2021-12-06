@@ -1,7 +1,5 @@
 <?php
 
-$lines = explode(PHP_EOL, file_get_contents(__DIR__ . '/inputs/input-04-1.txt'));
-
 class Cell {
   private $value;
   private $scored = false;
