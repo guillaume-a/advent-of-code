@@ -30,10 +30,10 @@ In the `challenges` folder, my personnal implementation for each. Really not opt
 
 Bash
 ```
-docker run --rm -v $(pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
+docker run --rm -ti -v $(pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
 ```
 
 Fish
 ```
-docker run --rm -v (pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
+docker run --rm -ti -v (pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
 ```
