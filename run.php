@@ -21,4 +21,19 @@ if( !file_exists($challengeFile)) {
 
 $lines = explode(PHP_EOL, file_get_contents($inputFile));
 
-require_once $challengeFile;
+$answer = require_once $challengeFile;
+
+echo PHP_EOL . '------------------------';
+echo PHP_EOL . 'Your answer is : ' . $answer;
+
+
+$assertions = json_decode(file_get_contents(__DIR__ . '/answers.json'), true);
+$assertionKey = $day . '-' . $input;
+
+
+if(isset($assertions[$assertionKey])) {
+  echo PHP_EOL;
+  echo ($assertions[$assertionKey] == $answer) ? 'Your answer is correct !' : 'Correct answer was : ' . $assertions[$assertionKey];
+}
+
+echo PHP_EOL . '------------------------';

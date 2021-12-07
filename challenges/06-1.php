@@ -27,9 +27,12 @@ class Lanternfish {
 
 }
 
+/*
 echo "How many days ? : ";
 $handle = fopen ("php://stdin","r");
 $daysToCount = (int) fgets($handle);
+*/
+$daysToCount = 80;
 
 
 $line = reset($lines);
@@ -65,4 +68,4 @@ while($currentDay < $daysToCount) {
   }
 }
 
-echo count($fishes);
+return count($fishes);

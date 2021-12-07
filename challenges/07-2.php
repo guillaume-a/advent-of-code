@@ -15,5 +15,4 @@ for ($destination = 0;$destination < count($values); $destination++) {
   $min_fuel = min($min_fuel, $fuel);
 }
 
-
-var_dump($min_fuel);
+return $min_fuel;

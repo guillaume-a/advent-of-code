@@ -161,8 +161,7 @@ foreach($numbers as $number) {
     //last grid
     if(count($grids) === 1) {
       if($grid->isWin()) {
-        echo $number * $grid->getScore();
-        exit;
+        return $number * $grid->getScore();
       }
     } else {
       if(!$grid->isWin()) {

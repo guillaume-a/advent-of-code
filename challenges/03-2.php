@@ -71,4 +71,4 @@ function calculate_co2_rating($lines) {
 $oxygen = calculate_oxygen_rating($lines);
 $co2 = calculate_co2_rating($lines);
 
-echo bindec($oxygen) * bindec($co2);
+return bindec($oxygen) * bindec($co2);

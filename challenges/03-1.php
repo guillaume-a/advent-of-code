@@ -30,4 +30,4 @@ foreach($sums as $value) {
   $gamma .= $least_common;
 }
 
-echo bindec($epsylon) * bindec($gamma);
+return bindec($epsylon) * bindec($gamma);

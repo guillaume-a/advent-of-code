@@ -133,4 +133,4 @@ function drawDiagonal(&$grid, $x1, $y1, $x2, $y2) {
 
 //draw($grid, $max_x, $max_y);
 
-echo $overlap;
+return $overlap;

@@ -157,8 +157,7 @@ foreach($numbers as $number) {
     echo $grid;
 
     if($grid->isWin()) {
-      echo $number * $grid->getScore();
-      exit;
+      return $number * $grid->getScore();
     }
   }
 }

@@ -20,4 +20,4 @@ $fuel = array_reduce($values, function($fuel, $position) use ($percentile) {
   return $fuel + abs($position - $percentile);
 }, 0);
 
-var_dump($fuel);
+return $fuel;

@@ -19,4 +19,4 @@ foreach($lines as $line) {
   }
 }
 
-echo $x * $y;
+return $x * $y;

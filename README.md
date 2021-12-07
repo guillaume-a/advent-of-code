@@ -2,7 +2,23 @@
 
 This is my attempt to solve [Advent of Code 2021](https://adventofcode.com/2021) puzzles in PHP.
 
-Solutions are not optimized, and are not intended to be.
+/!\ Solutions are not optimized, and are not intended to be.
+
+# Run php script
+
+`day` must be the day (two digits) follow by the part. Ex : 01-1 = day 01, part 1.
+
+`dataset` can be blank (example dataset) or corresponding to a custom dataset.
+
+Bash
+```
+docker run --rm -ti -v $(pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
+```
+
+Fish
+```
+docker run --rm -ti -v (pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
+```
 
 # Inputs 
 
@@ -22,18 +38,12 @@ You can add or replace with your inputs.
 
 In the `challenges` folder, my personnal implementation for each. Really not optimized, I just want to solve them and have fun.
 
-# Run php script
+Each challenge MUST `return` the value.
 
-`day` must be the day (two digits) follow by the part. Ex : 01-1 = day 01, part 1.
+`echo` or `var_dump` can be used for debugging.
 
-`dataset` can be blank (example dataset) or corresponding to a custom dataset.
+# Assertions
 
-Bash
-```
-docker run --rm -ti -v $(pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
-```
+In the `answers.json` file, the expected values returned for each challenge/part/input.
 
-Fish
-```
-docker run --rm -ti -v (pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
-```
+Can be used for futur optimisation.

@@ -11,4 +11,4 @@ foreach($lines as $line) {
   $previous = $line;
 }
 
-echo $increased;
+return $increased;

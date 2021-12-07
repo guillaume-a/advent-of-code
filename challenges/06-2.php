@@ -1,10 +1,13 @@
 <?php
 ini_set('memory_limit', -1);
 
-
+/*
 echo "How many days ? : ";
 $handle = fopen ("php://stdin","r");
 $daysToCount = (int) fgets($handle);
+*/
+
+$daysToCount = 256;
 
 $fishes = array_fill(0, 8, 0);
 $line = reset($lines);
@@ -38,4 +41,4 @@ while($currentDay < $daysToCount) {
   $fishes[8] += $fishToReset;
 }
 
-echo array_sum($fishes);
+return array_sum($fishes);

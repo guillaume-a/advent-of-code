@@ -75,4 +75,4 @@ foreach($lines as $coords) {
 
 //draw($grid, $max_x, $max_y);
 
-echo $overlap;
+return $overlap;
