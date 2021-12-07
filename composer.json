@@ -1,0 +1,13 @@
+{
+    "name": "joky/adventofcode",
+    "description": "Advent Of code PHP Boilerplate",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Joky\\AdventOfCode\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/console": "^5.0"
+    }
+}

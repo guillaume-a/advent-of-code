@@ -1,49 +1,85 @@
-# Advent of Code 2021
+# Advent of Code
 
-This is my attempt to solve [Advent of Code 2021](https://adventofcode.com/2021) puzzles in PHP.
+This is my attempt to solve [Advent of Code](https://adventofcode.com/) puzzles in PHP.
 
-/!\ Solutions are not optimized, and are not intended to be.
+> /!\ Solutions are not optimized, and are not intended to be.
+> 
+> This is just me trying to have fun solving puzzles. <3
 
-# Run php script
+# Requirements
 
-`day` must be the day (two digits) follow by the part. Ex : 01-1 = day 01, part 1.
+* Bash or Fish
+* Make
+* Docker
 
-`dataset` can be blank (example dataset) or corresponding to a custom dataset.
+# Setup
 
 Bash
 ```
-docker run --rm -ti -v $(pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
+docker run --rm --interactive --tty --volume $(pwd):/app composer:2.1 install
 ```
 
 Fish
 ```
-docker run --rm -ti -v (pwd):/app/ php:7.4-cli php app/run.php [day] [dataset=example]
+docker run --rm --interactive --tty --volume (pwd):/app composer:2.1 install
 ```
 
-# Inputs 
+# TODO 
 
-In the `inputs` folder, inputs are named with the following pattern : 
+* makefile
+* fix-permission script
+
+# Run php script
 
 ```
-day-[day]-[dataset].txt
+docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php --help
+
+Usage:
+  aoc:run [options] [--] <day>
+
+Arguments:
+  day                   Which day do you want to launch ?
+
+Options:
+      --part2           Is it allready part 2 ?
+  -i, --input[=INPUT]   Do you want example input or other name ? [default: "example"]
+  -y, --year[=YEAR]     What year is it ? [default: "2021"]
 ```
 
-Where dataset can be any name.
+Examples :
 
-Each challenge come with `example` and `custom` datasets which corresponds to my own inputs.
+Run Day 01, Part 1 for current year with example inputs : 
+```
+docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1
+```
 
-You can add or replace with your inputs.
+Run Day 01, Part 2 for current year with example inputs :
+```
+docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --part2
+```
+
+Run Day 01, Part 2 for current year with `custom` inputs (where `custom` is the folder name, it can be whatever you want) :
+```
+docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --part2 -i custom
+```
+
+# Inputs & Answers
+
+In the `resources` folder, inputs are named with the following pattern : 
+
+```
+/[YYYY]/[input-name]/inputs/[DD].txt
+/[YYYY]/[input-name]/answers/[DD]-[part].txt
+```
+
+In the `answers` files, are the expected values for this specific challenge/part.
+ 
+Can be used for futur optimisation.
 
 # Challenges
 
-In the `challenges` folder, my personnal implementation for each. Really not optimized, I just want to solve them and have fun.
+Each challenge must implements `ChallengeInterface`
 
-Each challenge MUST `return` the value.
+And be in the namespace corrersponding to its year/day
 
-`echo` or `var_dump` can be used for debugging.
-
-# Assertions
-
-In the `answers.json` file, the expected values returned for each challenge/part/input.
-
-Can be used for futur optimisation.
+`Joky\AdventOfCode\Challenges\Year_[YYYY]\Day_[DD]`
