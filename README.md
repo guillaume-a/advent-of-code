@@ -9,7 +9,6 @@ This is my attempt to solve [Advent of Code](https://adventofcode.com/) puzzles 
 # Requirements
 
 * Bash or Fish
-* Make
 * Docker
 
 # Setup
@@ -31,9 +30,17 @@ docker run --rm --interactive --tty --volume (pwd):/app composer:2.1 install
 
 # Run php script
 
+Bash
 ```
-docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php --help
+docker run --rm -ti -v $(pwd):/app/ php:8-cli php app/run.php <day> [--p2] [--year yyyy] [--custom]
+```
 
+Fish
+```
+docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php
+```
+
+```
 Usage:
   aoc:run [options] [--] <day>
 
@@ -41,9 +48,9 @@ Arguments:
   day                   Which day do you want to launch ?
 
 Options:
-      --part2           Is it allready part 2 ?
-  -i, --input[=INPUT]   Do you want example input or other name ? [default: "example"]
   -y, --year[=YEAR]     What year is it ? [default: "2021"]
+      --p2              Is it allready part 2 ?
+  -c, --custom          Do you want to use your custom input ?
 ```
 
 Examples :
@@ -55,31 +62,31 @@ docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1
 
 Run Day 01, Part 2 for current year with example inputs :
 ```
-docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --part2
+docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --p2
 ```
 
-Run Day 01, Part 2 for current year with `custom` inputs (where `custom` is the folder name, it can be whatever you want) :
+Run Day 01, Part 2 for current year with `custom` inputs:
 ```
-docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --part2 -i custom
+docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --p2 --custom
 ```
 
-# Inputs & Answers
+# Inputs
 
 In the `resources` folder, inputs are named with the following pattern : 
 
 ```
-/[YYYY]/[input-name]/inputs/[DD].txt
-/[YYYY]/[input-name]/answers/[DD]-[part].txt
+/[YYYY]/[example|custom]/inputs/[DD].txt
+/[YYYY]/[example|custom]/answers/[DD]-[part].txt
 ```
 
-In the `answers` files, are the expected values for this specific challenge/part.
- 
-Can be used for futur optimisation.
+#Answers
+
+Beide the inputs folder, there is a anwsers.json wwith example answers. You can duplicate it into the custom with correct answers. If you want to refactor code after, you'll still have the correct answers somewhere.
 
 # Challenges
 
 Each challenge must implements `ChallengeInterface`
 
-And be in the namespace corrersponding to its year/day
+And be in the class corresponding to its year/day
 
 `Joky\AdventOfCode\Challenges\Year_[YYYY]\Day_[DD]`

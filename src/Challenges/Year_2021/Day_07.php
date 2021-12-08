@@ -1,10 +1,10 @@
 <?php
 
-namespace Joky\AdventOfCode\Challenges\Year_2021\Day_07;
+namespace Joky\AdventOfCode\Challenges\Year_2021;
 
 use Joky\AdventOfCode\Challenges\ChallengeBase;
 
-class Challenge extends ChallengeBase {
+class Day_07 extends ChallengeBase {
 
   public function part1(): string {
 

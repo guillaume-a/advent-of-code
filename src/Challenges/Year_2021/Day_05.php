@@ -1,10 +1,10 @@
 <?php
 
-namespace Joky\AdventOfCode\Challenges\Year_2021\Day_05;
+namespace Joky\AdventOfCode\Challenges\Year_2021;
 
 use Joky\AdventOfCode\Challenges\ChallengeBase;
 
-class Challenge extends ChallengeBase {
+class Day_05 extends ChallengeBase {
 
   private $grid = [];
 
