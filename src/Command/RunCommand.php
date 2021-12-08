@@ -34,7 +34,7 @@ class RunCommand extends Command {
     $year = $input->getOption('year');
     $this->part = $input->getOption('p2') ? '2' : '1';
     $this->puzzleInput = $input->getOption('custom') ? 'custom' : 'example';
-    $this->resourceDir = sprintf(__DIR__ . '/../../resources/%s', $year);
+    $this->resourceDir = sprintf(__DIR__ . '/../Challenges/Year_%s/inputs', $year);
 
     //
     $class = sprintf('Joky\\AdventOfCode\\Challenges\\Year_%s\\Day_%s',
@@ -46,7 +46,7 @@ class RunCommand extends Command {
     }
 
     // Inputs
-    $inputFilename = sprintf($this->resourceDir . '/%s/inputs/%s.txt', $this->puzzleInput, $this->day);
+    $inputFilename = sprintf($this->resourceDir . '/%s/%s.txt', $this->puzzleInput, $this->day);
 
     if(!file_exists($inputFilename)) {
       $output->writeln('<error>No Puzzle input found</error>');
