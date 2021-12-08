@@ -46,7 +46,7 @@ class RunCommand extends Command {
     }
 
     /** @var \Joky\AdventOfCode\Challenges\ChallengeInterface $challenge */
-    $challenge = new $class(explode(PHP_EOL, file_get_contents($inputFilename)));
+    $challenge = new $class(explode(PHP_EOL, trim(file_get_contents($inputFilename))));
     $answer = $challenge->{'part' . $part}();
 
     $output->writeln('Your answer is : <info>' . $answer . '</info>');
