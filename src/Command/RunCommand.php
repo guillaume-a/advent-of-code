@@ -12,24 +12,33 @@ class RunCommand extends Command {
 
   protected static $defaultName = 'aoc:run';
 
+  private string $resourceDir;
+  private string $day;
+  private string $puzzleInput;
+  private string $part;
+
+
   protected function configure(): void
   {
     $this
       ->addArgument('day', InputArgument::REQUIRED, 'Which day do you want to launch ?')
-      ->addOption('part2', null, InputOption::VALUE_NONE, 'Is it allready part 2 ?')
-      ->addOption('input', 'i', InputOption::VALUE_OPTIONAL, 'Do you want example input or other name ?', 'example')
       ->addOption('year', 'y', InputOption::VALUE_OPTIONAL, 'What year is it ?', date('Y'))
+      ->addOption('p2', null, InputOption::VALUE_NONE, 'Is it allready part 2 ?')
+      ->addOption('custom', 'c', InputOption::VALUE_NONE, 'Do you want to use your custom input ?')
     ;
   }
 
   protected function execute(InputInterface $input, OutputInterface $output): int
   {
-    $day = str_pad($input->getArgument('day'), 2, '0', STR_PAD_LEFT);
+    $this->day = str_pad($input->getArgument('day'), 2, '0', STR_PAD_LEFT);
     $year = $input->getOption('year');
-    $part = $input->getOption('part2') ? '2' : '1';
-    $puzzleInput = $input->getOption('input');
+    $this->part = $input->getOption('p2') ? '2' : '1';
+    $this->puzzleInput = $input->getOption('custom') ? 'custom' : 'example';
+    $this->resourceDir = sprintf(__DIR__ . '/../../resources/%s', $year);
 
-    $class = sprintf('Joky\\AdventOfCode\\Challenges\\Year_%s\\Day_%s\\Challenge', $year, $day);
+    //
+    $class = sprintf('Joky\\AdventOfCode\\Challenges\\Year_%s\\Day_%s',
+      $year, $this->day);
 
     if(!class_exists($class)) {
       $output->writeln('<error>No Challenge found</error>');
@@ -37,8 +46,7 @@ class RunCommand extends Command {
     }
 
     // Inputs
-    $resourcesDir = sprintf(__DIR__ . '/../../resources/%s', $year);
-    $inputFilename = sprintf($resourcesDir . '/%s/inputs/%s.txt', $puzzleInput, $day);
+    $inputFilename = sprintf($this->resourceDir . '/%s/inputs/%s.txt', $this->puzzleInput, $this->day);
 
     if(!file_exists($inputFilename)) {
       $output->writeln('<error>No Puzzle input found</error>');
@@ -47,24 +55,40 @@ class RunCommand extends Command {
 
     /** @var \Joky\AdventOfCode\Challenges\ChallengeInterface $challenge */
     $challenge = new $class(explode(PHP_EOL, trim(file_get_contents($inputFilename))));
-    $answer = $challenge->{'part' . $part}();
+    $answer = $challenge->{'part' . $this->part}();
 
     $output->writeln('Your answer is : <info>' . $answer . '</info>');
 
-    // Check Answers
-    $answerFilename = sprintf($resourcesDir . '/%s/answers/%s-%s.txt', $puzzleInput, $day, $part);
-
-    if(file_exists($answerFilename)) {
-      $expectedAnswer = file_get_contents($answerFilename);
-      if($expectedAnswer == $answer) {
-        $output->writeln('<info>Answer is correct !</info>');
-      } else {
-        $output->writeln('Answer is not correct. Expected : <error>' . $expectedAnswer . '</error>');
-      }
-
-      return Command::INVALID;
-    }
+    $this->testAnswer($output, $answer);
 
     return Command::SUCCESS;
+  }
+
+  private function testAnswer(OutputInterface $output, $answer) {
+    // Check Answers
+    $answerFilename = sprintf($this->resourceDir . '/%s/answers.json', $this->puzzleInput);
+
+    if(!file_exists($answerFilename)) {
+      return;
+    }
+
+    $answers = json_decode(file_get_contents($answerFilename), true);
+
+    if(!array_key_exists($this->day, $answers)) {
+      return;
+    }
+
+    $dayAnswer = $answers[$this->day];
+    if(!array_key_exists('part' . $this->part, $dayAnswer)) {
+      return;
+    }
+
+    $expectedAnswer = $dayAnswer['part' . $this->part];
+
+    if($expectedAnswer == $answer) {
+      $output->writeln('<info>Answer is correct !</info>');
+    } else {
+      $output->writeln('Answer is not correct. Expected : <comment>' . $expectedAnswer . '</comment>');
+    }
   }
 }
