@@ -25,7 +25,10 @@ class NewCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $year = $input->getArgument('year');
-        $day = str_pad($input->getArgument('day'), 2, '0', \STR_PAD_LEFT);
+        assert(is_string($year));
+        $dayArg = $input->getArgument('day');
+        assert(is_string($dayArg) || is_int($dayArg));
+        $day = str_pad((string) $dayArg, 2, '0', \STR_PAD_LEFT);
 
         $yearDir = \sprintf(__DIR__.'/../Challenges/Year%s', $year);
         $inputsDir = \sprintf('%s/inputs', $yearDir);
@@ -79,6 +82,10 @@ class NewCommand extends Command
             $content = file_get_contents($answersFile);
             $answers = json_decode($content !== false ? $content : '', true);
         } else {
+            $answers = [];
+        }
+
+        if (!is_array($answers)) {
             $answers = [];
         }
 
