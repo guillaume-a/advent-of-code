@@ -10,5 +10,16 @@
     "require": {
         "php": "^8.5",
         "symfony/console": "^8.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-symfony": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.91"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
     }
 }

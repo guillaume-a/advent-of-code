@@ -1,4 +1,4 @@
-.PHONY: help install new run fix
+.PHONY: help install new run fix phpstan cs-fix cs-check
 
 # Colors
 GREEN  := \033[0;32m
@@ -34,6 +34,14 @@ run: ## 🚀 Run challenge (year=YYYY day=DD)
 	@echo "$(YELLOW)🚀 Running challenge...$(RESET)"
 	@$(PHP) php app/run.php aoc:run $(year) $(day)
 
-fix: ## 🔧 Fix code style
+phpstan: ## 🔍 Run PHPStan static analysis
+	@echo "$(BLUE)🔍 Running PHPStan...$(RESET)"
+	@$(PHP) php vendor/bin/phpstan analyse
+
+cs-fix: ## 🔧 Fix code style with PHP-CS-Fixer
 	@echo "$(BLUE)🔧 Fixing code style...$(RESET)"
-	@$(PHP) php app/vendor/bin/php-cs-fixer fix
+	@$(PHP) php vendor/bin/php-cs-fixer fix
+
+cs-check: ## ✅ Check code style with PHP-CS-Fixer (dry-run)
+	@echo "$(BLUE)✅ Checking code style...$(RESET)"
+	@$(PHP) php vendor/bin/php-cs-fixer fix --dry-run --diff

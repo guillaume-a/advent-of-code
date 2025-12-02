@@ -55,10 +55,24 @@ Or manually with Docker:
 docker run --rm -ti --user $(id -u):$(id -g) -v $(pwd):/app/ php:8.5-cli php app/run.php aoc:run 2025 01
 ```
 
-### Fix Code Style
+### Code Quality
+
+#### Fix Code Style
 
 ```bash
-make fix
+make cs-fix
+```
+
+#### Check Code Style (Dry-run)
+
+```bash
+make cs-check
+```
+
+#### Run Static Analysis
+
+```bash
+make phpstan
 ```
 
 ## 📁 Project Structure
@@ -116,3 +130,11 @@ This project follows **PSR-1/PSR-12** PHP standards:
 ## 🛠️ Development
 
 All commands are available through the Makefile. Run `make` to see the full list of available commands with descriptions.
+
+### Code Quality Tools
+
+This project uses:
+- **PHPStan** (level max) with Symfony extension for static analysis
+- **PHP-CS-Fixer** with Symfony coding standards for code style
+
+Both tools are configured and can be run via Makefile commands (`make phpstan`, `make cs-fix`, `make cs-check`).
