@@ -16,12 +16,12 @@ This is my attempt to solve [Advent of Code](https://adventofcode.com/) puzzles 
 
 Bash
 ```
-docker run --rm --interactive --tty --volume $(pwd):/app composer:2.1 install
+docker run --rm --interactive --tty --volume $(pwd):/app composer:latest install
 ```
 
 Fish
 ```
-docker run --rm --interactive --tty --volume (pwd):/app composer:2.1 install
+docker run --rm --interactive --tty --volume (pwd):/app composer:latest install
 ```
 
 # TODO 
