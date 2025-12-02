@@ -34,10 +34,10 @@ class RunCommand extends Command {
     $year = $input->getOption('year');
     $this->part = $input->getOption('p2') ? '2' : '1';
     $this->puzzleInput = $input->getOption('custom') ? 'custom' : 'example';
-    $this->resourceDir = sprintf(__DIR__ . '/../Challenges/Year_%s/inputs', $year);
+    $this->resourceDir = sprintf(__DIR__ . '/../Challenges/Year%s/inputs', $year);
 
     //
-    $class = sprintf('Joky\\AdventOfCode\\Challenges\\Year_%s\\Day_%s',
+    $class = sprintf('Joky\\AdventOfCode\\Challenges\\Year%s\\Day%s',
       $year, $this->day);
 
     if(!class_exists($class)) {
@@ -55,7 +55,8 @@ class RunCommand extends Command {
 
     /** @var \Joky\AdventOfCode\Challenges\ChallengeInterface $challenge */
     $challenge = new $class(explode(PHP_EOL, rtrim(file_get_contents($inputFilename))));
-    $answer = $challenge->{'part' . $this->part}();
+    $methodName = $this->part === '1' ? 'partOne' : 'partTwo';
+    $answer = $challenge->$methodName();
 
     $output->writeln('Your answer is : <info>' . $answer . '</info>');
 

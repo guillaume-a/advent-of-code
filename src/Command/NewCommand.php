@@ -25,7 +25,7 @@ class NewCommand extends Command {
     $year = $input->getArgument('year');
     $day = str_pad($input->getArgument('day'), 2, '0', STR_PAD_LEFT);
     
-    $yearDir = sprintf(__DIR__ . '/../Challenges/Year_%s', $year);
+    $yearDir = sprintf(__DIR__ . '/../Challenges/Year%s', $year);
     $inputsDir = sprintf('%s/inputs', $yearDir);
     $exampleDir = sprintf('%s/example', $inputsDir);
     $customDir = sprintf('%s/custom', $inputsDir);
@@ -33,7 +33,7 @@ class NewCommand extends Command {
     // Create directories if they don't exist
     if (!is_dir($yearDir)) {
       mkdir($yearDir, 0755, true);
-      $output->writeln(sprintf('<info>Created directory: Year_%s</info>', $year));
+      $output->writeln(sprintf('<info>Created directory: Year%s</info>', $year));
     }
     
     if (!is_dir($exampleDir)) {
@@ -47,15 +47,15 @@ class NewCommand extends Command {
     }
     
     // Create challenge class file
-    $classFile = sprintf('%s/Day_%s.php', $yearDir, $day);
+    $classFile = sprintf('%s/Day%s.php', $yearDir, $day);
     if (file_exists($classFile)) {
-      $output->writeln(sprintf('<error>Challenge class already exists: Day_%s.php</error>', $day));
+      $output->writeln(sprintf('<error>Challenge class already exists: Day%s.php</error>', $day));
       return Command::FAILURE;
     }
     
     $classContent = $this->generateClassContent($year, $day);
     file_put_contents($classFile, $classContent);
-    $output->writeln(sprintf('<info>Created challenge class: Day_%s.php</info>', $day));
+    $output->writeln(sprintf('<info>Created challenge class: Day%s.php</info>', $day));
     
     // Create input files
     $exampleInputFile = sprintf('%s/%s.txt', $exampleDir, $day);
@@ -98,19 +98,19 @@ class NewCommand extends Command {
     return <<<PHP
 <?php
 
-namespace Joky\AdventOfCode\Challenges\Year_{$year};
+namespace Joky\AdventOfCode\Challenges\Year{$year};
 
 use Joky\AdventOfCode\Challenges\ChallengeBase;
 
-class Day_{$day} extends ChallengeBase {
+class Day{$day} extends ChallengeBase {
 
-  public function part1(): string {
-    // TODO: Implement part1
+  public function partOne(): string {
+    // TODO: Implement partOne
     return '';
   }
 
-  public function part2(): string {
-    // TODO: Implement part2
+  public function partTwo(): string {
+    // TODO: Implement partTwo
     return '';
   }
 }
