@@ -61,6 +61,9 @@ class Day08 extends ChallengeBase
 
             // Find Two, Three and Five
             $fiveDigits = $this->findByLength($inDigits, 5);
+            $two = '';
+            $three = '';
+            $five = '';
 
             foreach ($fiveDigits as $fiveDigit) {
                 // var_dump($fiveDigit);
@@ -82,6 +85,9 @@ class Day08 extends ChallengeBase
 
             // Six, Nine and Zero
             $sixDigits = $this->findByLength($inDigits, 6);
+            $zero = '';
+            $six = '';
+            $nine = '';
 
             foreach ($sixDigits as $sixDigit) {
                 $tmp = $this->diff($sixDigit, $one);

@@ -88,6 +88,7 @@ class Day02 extends ChallengeBase
             [$cpu, $need] = explode(' ', $game);
 
             $shapeCpu = $shapes[$cpu];
+            $shapeMe = '';
 
             if ('X' === $need) {
                 $shapeMe = $this->win[$shapeCpu];
