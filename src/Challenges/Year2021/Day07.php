@@ -27,7 +27,7 @@ class Day07 extends ChallengeBase
         $percentile = $values[floor($r)];
 
         return array_reduce($values, function ($fuel, $position) use ($percentile) {
-            return $fuel + abs($position - $percentile);
+            return $fuel + abs((int) $position - (int) $percentile);
         }, 0);
     }
 
@@ -40,7 +40,7 @@ class Day07 extends ChallengeBase
         // brute force, did not find the algo
         for ($destination = 0; $destination < \count($values); ++$destination) {
             $fuel = array_reduce($values, function ($global_fuel, $position) use ($destination) {
-                $distance = abs($position - $destination);
+                $distance = abs((int) $position - $destination);
                 $fuel = ($distance * ($distance + 1)) / 2;
 
                 return $global_fuel + $fuel;

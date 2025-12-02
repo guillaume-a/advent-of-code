@@ -129,8 +129,8 @@ class Day18 extends ChallengeBase
     {
         $element = $this->getElementAt($pos, $number);
 
-        $p1 = floor($element / 2);
-        $p2 = ceil($element / 2);
+        $p1 = floor((int) $element / 2);
+        $p2 = ceil((int) $element / 2);
 
         $newNumber = substr($number, 0, $pos);
         $newNumber .= $this->add($p1, $p2);
