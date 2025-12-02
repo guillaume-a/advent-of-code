@@ -39,7 +39,7 @@ make new year=2025 day=01
 ```
 
 This will create:
-- Challenge class: `src/Challenges/Year_2025/Day_01.php`
+- Challenge class: `src/Challenges/Year2025/Day01.php`
 - Example input: `inputs/example/01.txt`
 - Custom input: `inputs/custom/01.txt`
 - Entry in `answers.json`
@@ -84,20 +84,34 @@ The `answers.json` file contains expected answers for validation:
 ### Challenges
 
 Each challenge must:
-- Implement `ChallengeInterface`
-- Be in the namespace: `Joky\AdventOfCode\Challenges\Year_[YYYY]\Day_[DD]`
+- Extend `ChallengeBase`
+- Be in the namespace: `Joky\AdventOfCode\Challenges\Year[YYYY]\Day[DD]`
 - Implement methods: `partOne()` and `partTwo()`
 
 Example:
 ```php
-namespace Joky\AdventOfCode\Challenges\Year_2025;
+namespace Joky\AdventOfCode\Challenges\Year2025;
 
-class Day_01 implements ChallengeInterface
+use Joky\AdventOfCode\Challenges\ChallengeBase;
+
+class Day01 extends ChallengeBase
 {
     public function partOne(): string { /* ... */ }
     public function partTwo(): string { /* ... */ }
 }
 ```
+
+## 📏 Naming Conventions
+
+This project follows **PSR-1/PSR-12** PHP standards:
+
+- **Classes**: `PascalCase` (e.g., `NewCommand`, `ChallengeBase`, `Day01`)
+- **Methods**: `camelCase` (e.g., `partOne()`, `partTwo()`, `generateClassContent()`)
+- **Properties**: `camelCase` with type hints (e.g., `private string $resourceDir`)
+- **Namespaces**: `PascalCase` (e.g., `Year2025`, `Day01`)
+- **Files/Directories**: Match class names (e.g., `Day01.php`, `Year2025/`)
+
+**Note**: Use `camelCase` for ALL methods (public, protected, private). No underscores in class names, namespaces, or file/directory names.
 
 ## 🛠️ Development
 
