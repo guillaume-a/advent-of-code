@@ -161,7 +161,7 @@ class Day18 extends ChallengeBase
             $newNumber = substr($number, 0, $left);
             $newNumber .= $newLeft;
             // $newNumber .= ' | ';
-            $newNumber .= substr($number, $left + \strlen($oldLeft), $pos - ($left + \strlen($oldLeft)));
+            $newNumber .= substr($number, $left + \strlen((string) $oldLeft), $pos - ($left + \strlen((string) $oldLeft)));
         // $newNumber .= ' | ';
         // $newNumber .= '0';
 
