@@ -32,7 +32,7 @@ new: ## 🎄 Create new challenge (year=YYYY day=DD)
 
 run: ## 🚀 Run challenge (year=YYYY day=DD)
 	@echo "$(YELLOW)🚀 Running challenge...$(RESET)"
-	@$(PHP) php run.php aoc:run $(year) $(day) $(inputs)
+	@$(PHP) php run.php aoc:run $(year) $(day) $(inputs) $(part)
 
 phpstan: ## 🔍 Run PHPStan static analysis
 	@echo "$(BLUE)🔍 Running PHPStan...$(RESET)"
