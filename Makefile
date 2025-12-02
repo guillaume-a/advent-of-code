@@ -28,11 +28,11 @@ install: ## 📦 Install dependencies
 
 new: ## 🎄 Create new challenge (year=YYYY day=DD)
 	@echo "$(GREEN)🎄 Creating new challenge $(year)/$(day)...$(RESET)"
-	@$(PHP) php app/run.php aoc:new $(year) $(day)
+	@$(PHP) php run.php aoc:new $(year) $(day)
 
 run: ## 🚀 Run challenge (year=YYYY day=DD)
 	@echo "$(YELLOW)🚀 Running challenge...$(RESET)"
-	@$(PHP) php app/run.php aoc:run $(year) $(day)
+	@$(PHP) php run.php aoc:run $(year) $(day) $(inputs)
 
 phpstan: ## 🔍 Run PHPStan static analysis
 	@echo "$(BLUE)🔍 Running PHPStan...$(RESET)"
