@@ -94,15 +94,15 @@ class Day04 extends ChallengeBase
 
 class Cell implements \Stringable
 {
-    private $value;
-    private $scored = false;
+    private int $value;
+    private bool $scored = false;
 
-    public function __construct($value)
+    public function __construct(int $value)
     {
         $this->value = $value;
     }
 
-    public function getValue()
+    public function getValue(): int
     {
         return $this->value;
     }
@@ -110,19 +110,19 @@ class Cell implements \Stringable
     /**
      * @return bool
      */
-    public function isScored()
+    public function isScored(): bool
     {
         return $this->scored;
     }
 
-    public function setScored()
+    public function setScored(): void
     {
         $this->scored = true;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        $number = $this->scored ? '  ' : str_pad($this->getValue(), 2, ' ', \STR_PAD_LEFT);
+        $number = $this->scored ? '  ' : str_pad((string) $this->getValue(), 2, ' ', \STR_PAD_LEFT);
 
         return '['.$number.'] ';
     }
@@ -130,10 +130,12 @@ class Cell implements \Stringable
 
 class Grid implements \Stringable
 {
-    private $lines = [];
-    public $numbers = [];
+    /** @var array<array<Cell>> */
+    private array $lines = [];
+    /** @var array<string, array<int>> */
+    public array $numbers = [];
 
-    public function addLine($values)
+    public function addLine(string $values): void
     {
         $line = [];
 
@@ -142,13 +144,13 @@ class Grid implements \Stringable
             // store number positions
             $this->numbers[$value] = [\count($line), \count($this->lines)];
 
-            $line[] = new Cell($value);
+            $line[] = new Cell((int) $value);
         }
 
         $this->lines[] = $line;
     }
 
-    public function scoreNumber($number)
+    public function scoreNumber(string $number): void
     {
         if (!\array_key_exists($number, $this->numbers)) {
             return;
@@ -160,7 +162,7 @@ class Grid implements \Stringable
         $cell->setScored();
     }
 
-    public function getScore()
+    public function getScore(): int
     {
         $score = 0;
 
@@ -176,7 +178,7 @@ class Grid implements \Stringable
         return $score;
     }
 
-    public function isWin()
+    public function isWin(): bool
     {
         $bingo_1_score = 0;
         $bingo_2_score = 0;
