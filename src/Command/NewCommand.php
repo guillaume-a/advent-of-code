@@ -76,7 +76,8 @@ class NewCommand extends Command
         // Create or update answers.json
         $answersFile = \sprintf('%s/answers.json', $exampleDir);
         if (file_exists($answersFile)) {
-            $answers = json_decode(file_get_contents($answersFile), true);
+            $content = file_get_contents($answersFile);
+            $answers = json_decode($content !== false ? $content : '', true);
         } else {
             $answers = [];
         }

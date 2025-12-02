@@ -55,8 +55,9 @@ class RunCommand extends Command
             return Command::INVALID;
         }
 
+        $content = file_get_contents($inputFilename);
         /** @var \Joky\AdventOfCode\Challenges\ChallengeInterface $challenge */
-        $challenge = new $class(explode(\PHP_EOL, rtrim(file_get_contents($inputFilename))));
+        $challenge = new $class(explode(\PHP_EOL, rtrim($content !== false ? $content : '')));
         $methodName = '1' === $this->part ? 'partOne' : 'partTwo';
         $answer = $challenge->$methodName();
 
@@ -76,7 +77,8 @@ class RunCommand extends Command
             return;
         }
 
-        $answers = json_decode(file_get_contents($answerFilename), true);
+        $content = file_get_contents($answerFilename);
+        $answers = json_decode($content !== false ? $content : '', true);
 
         if (!\array_key_exists($this->day, $answers)) {
             return;
