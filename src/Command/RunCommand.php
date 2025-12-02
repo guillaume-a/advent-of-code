@@ -8,7 +8,6 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand(name: 'aoc:run')]
@@ -25,7 +24,7 @@ class RunCommand extends Command
           ->addArgument('year', InputArgument::REQUIRED, 'What year is it ?')
           ->addArgument('day', InputArgument::REQUIRED, 'Which day do you want to launch ?')
           ->addArgument('inputs', InputArgument::OPTIONAL, 'Do you want to use your custom input ?', 'example')
-          ->addOption('p2', null, InputOption::VALUE_NONE, 'Is it allready part 2 ?')
+          ->addArgument('part', InputArgument::OPTIONAL, 'Is it allready part 2 ?', '1')
         ;
     }
 
@@ -36,7 +35,9 @@ class RunCommand extends Command
         $this->day = str_pad((string) $dayArg, 2, '0', \STR_PAD_LEFT);
         $year = $input->getArgument('year');
         \assert(\is_string($year) || \is_int($year));
-        $this->part = $input->getOption('p2') ? '2' : '1';
+        $partArg = $input->getArgument('part');
+        \assert(\is_string($partArg));
+        $this->part = $partArg;
         $inputsArg = $input->getArgument('inputs');
         \assert(\is_string($inputsArg));
         $this->puzzleInput = $inputsArg;
