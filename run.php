@@ -3,13 +3,15 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+use Joky\AdventOfCode\Command\NewCommand;
 use Joky\AdventOfCode\Command\RunCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application('aoc', '1.1.0');
 
 $application->addCommand(new RunCommand());
-$application->setDefaultCommand('aoc:run', true);
+$application->addCommand(new NewCommand());
+$application->setDefaultCommand('aoc:run');
 
 try {
     $application->run();
