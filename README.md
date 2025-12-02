@@ -10,6 +10,7 @@ This is my attempt to solve [Advent of Code](https://adventofcode.com/) puzzles 
 
 * Bash or Fish
 * Docker
+* PHP 8.5+
 
 # Setup
 
@@ -32,12 +33,12 @@ docker run --rm --interactive --tty --volume (pwd):/app composer:2.1 install
 
 Bash
 ```
-docker run --rm -ti -v $(pwd):/app/ php:8-cli php app/run.php <day> [--p2] [--year yyyy] [--custom]
+docker run --rm -ti -v $(pwd):/app/ php:8.5-cli php app/run.php <day> [--p2] [--year yyyy] [--custom]
 ```
 
 Fish
 ```
-docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php
+docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php
 ```
 
 ```
@@ -57,17 +58,17 @@ Examples :
 
 Run Day 01, Part 1 for current year with example inputs : 
 ```
-docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1
+docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php 1
 ```
 
 Run Day 01, Part 2 for current year with example inputs :
 ```
-docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --p2
+docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php 1 --p2
 ```
 
 Run Day 01, Part 2 for current year with `custom` inputs:
 ```
-docker run --rm -ti -v (pwd):/app/ php:8-cli php app/run.php 1 --p2 --custom
+docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php 1 --p2 --custom
 ```
 
 # Inputs
