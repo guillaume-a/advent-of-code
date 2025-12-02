@@ -8,6 +8,7 @@
         }
     },
     "require": {
-        "symfony/console": "^5.0"
+        "php": "^8.5",
+        "symfony/console": "^7.0"
     }
 }

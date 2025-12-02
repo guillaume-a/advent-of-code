@@ -4,7 +4,7 @@
 This is a PHP-based Advent of Code challenge solver using Docker for environment management and Symfony Console for CLI commands.
 
 ## Architecture
-- **Language**: PHP 8+
+- **Language**: PHP 8.5+
 - **Framework**: Symfony Console component
 - **Namespace**: `Joky\AdventOfCode`
 - **Structure**: PSR-4 autoloading from `src/` directory
@@ -34,7 +34,7 @@ All challenges must:
 4. Create corresponding input/answer files in `resources/`
 
 ## Docker Usage
-- Development: Use `php:8-cli` image
+- Development: Use `php:8.5-cli` image
 - Dependencies: Use `composer:2.1` image
 - Always mount current directory as `/app` volume
 
