@@ -16,7 +16,7 @@ class Day04 extends ChallengeBase
             $hash = md5($private.++$i);
         } while (!str_starts_with($hash, '00000'));
 
-        return $i;
+        return (string) $i;
     }
 
     public function partTwo(): string
@@ -27,6 +27,6 @@ class Day04 extends ChallengeBase
             $hash = md5($private.++$i);
         } while (!str_starts_with($hash, '000000'));
 
-        return $i;
+        return (string) $i;
     }
 }

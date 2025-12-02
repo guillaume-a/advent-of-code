@@ -40,7 +40,7 @@ class Day03 extends ChallengeBase
             $gamma .= $least_common;
         }
 
-        return bindec($epsylon) * bindec($gamma);
+        return (string) (bindec($epsylon) * bindec($gamma));
     }
 
     public function partTwo(): string
@@ -48,7 +48,7 @@ class Day03 extends ChallengeBase
         $oxygen = $this->calculate_oxygen_rating($this->lines);
         $co2 = $this->calculate_co2_rating($this->lines);
 
-        return bindec($oxygen) * bindec($co2);
+        return (string) (bindec($oxygen) * bindec($co2));
     }
 
     private function get_most_common_bit($lines, $position): string

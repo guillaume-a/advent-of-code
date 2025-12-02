@@ -69,7 +69,7 @@ class Day05 extends ChallengeBase
 
         // draw($grid, $max_x, $max_y);
 
-        return $overlap;
+        return (string) $overlap;
     }
 
     public function partTwo(): string
@@ -105,7 +105,7 @@ class Day05 extends ChallengeBase
 
         // draw($grid, $max_x, $max_y);
 
-        return $overlap;
+        return (string) $overlap;
     }
 
     private function draw($w, $h)
@@ -142,7 +142,7 @@ class Day05 extends ChallengeBase
             }
         }
 
-        return $overlap;
+        return (string) $overlap;
     }
 
     private function drawHorizontal($y, $x1, $x2)
@@ -163,7 +163,7 @@ class Day05 extends ChallengeBase
             }
         }
 
-        return $overlap;
+        return (string) $overlap;
     }
 
     private function drawDiagonal($x1, $y1, $x2, $y2)
@@ -196,6 +196,6 @@ class Day05 extends ChallengeBase
             $x1 += $step_x;
         }
 
-        return $overlap;
+        return (string) $overlap;
     }
 }

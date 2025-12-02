@@ -29,7 +29,7 @@ class Day03 extends ChallengeBase
             $houses[] = $coords;
         }
 
-        return \count(array_unique($houses));
+        return (string) \count(array_unique($houses));
     }
 
     public function partTwo(): string
@@ -68,6 +68,6 @@ class Day03 extends ChallengeBase
             }
         }
 
-        return \count(array_unique($houses));
+        return (string) \count(array_unique($houses));
     }
 }

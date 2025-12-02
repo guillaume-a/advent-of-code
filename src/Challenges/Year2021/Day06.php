@@ -45,7 +45,7 @@ class Day06 extends ChallengeBase
             }
         }
 
-        return \count($fishes);
+        return (string) \count($fishes);
     }
 
     public function partTwo(): string
@@ -84,7 +84,7 @@ class Day06 extends ChallengeBase
             $fishes[8] += $fishToReset;
         }
 
-        return array_sum($fishes);
+        return (string) array_sum($fishes);
     }
 }
 

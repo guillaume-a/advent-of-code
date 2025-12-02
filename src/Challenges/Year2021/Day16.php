@@ -206,7 +206,7 @@ class Day16 extends ChallengeBase
         $hexa = array_shift($this->lines);
         $mainPacket = Packet::fromHexa($hexa);
 
-        return $mainPacket->getTotalVersion();
+        return (string) $mainPacket->getTotalVersion();
     }
 
     public function partTwo(): string

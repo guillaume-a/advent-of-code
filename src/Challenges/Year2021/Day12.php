@@ -80,7 +80,7 @@ class Day12 extends ChallengeBase
 
         $this->findPathsPart1('start');
 
-        return \count($this->paths);
+        return (string) \count($this->paths);
     }
 
     private function isSmall($cave)
@@ -147,6 +147,6 @@ class Day12 extends ChallengeBase
 
         $this->visitCave('start');
 
-        return \count($this->paths);
+        return (string) \count($this->paths);
     }
 }

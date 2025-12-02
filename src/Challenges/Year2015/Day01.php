@@ -18,7 +18,7 @@ class Day01 extends ChallengeBase
             $floor += '(' === $direction ? 1 : -1;
         }
 
-        return $floor;
+        return (string) $floor;
     }
 
     public function partTwo(): string

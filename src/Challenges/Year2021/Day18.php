@@ -272,6 +272,6 @@ class Day18 extends ChallengeBase
 
     public function partTwo(): string
     {
-        return 0;
+        return '0';
     }
 }

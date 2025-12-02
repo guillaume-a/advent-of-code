@@ -21,7 +21,7 @@ class Day01 extends ChallengeBase
             $previous = $line;
         }
 
-        return $increased;
+        return (string) $increased;
     }
 
     public function partTwo(): string
@@ -56,6 +56,6 @@ class Day01 extends ChallengeBase
             $previous = $line;
         }
 
-        return $increased;
+        return (string) $increased;
     }
 }
