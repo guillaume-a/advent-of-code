@@ -67,7 +67,7 @@ class RunCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function testAnswer(OutputInterface $output, $answer)
+    private function testAnswer(OutputInterface $output, string $answer): void
     {
         // Check Answers
         $answerFilename = \sprintf($this->resourceDir.'/%s/answers.json', $this->puzzleInput);
