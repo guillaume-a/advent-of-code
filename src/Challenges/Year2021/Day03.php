@@ -51,7 +51,10 @@ class Day03 extends ChallengeBase
         return (string) (bindec($oxygen) * bindec($co2));
     }
 
-    private function get_most_common_bit($lines, $position): string
+    /**
+     * @param array<string> $lines
+     */
+    private function get_most_common_bit(array $lines, int $position): string
     {
         $half = \count($lines) * .5;
         $sum = 0;
@@ -64,12 +67,15 @@ class Day03 extends ChallengeBase
         return $sum >= $half ? '1' : '0';
     }
 
-    private function invert($bit): string
+    private function invert(string $bit): string
     {
         return '1' === $bit ? '0' : '1';
     }
 
-    private function calculate_oxygen_rating($lines)
+    /**
+     * @param array<string> $lines
+     */
+    private function calculate_oxygen_rating(array $lines): string
     {
         $size = \strlen($lines[0]);
 
@@ -92,10 +98,13 @@ class Day03 extends ChallengeBase
             $lines = $keep;
         }
 
-        return 0;
+        return '0';
     }
 
-    private function calculate_co2_rating($lines)
+    /**
+     * @param array<string> $lines
+     */
+    private function calculate_co2_rating(array $lines): string
     {
         $size = \strlen($lines[0]);
 
@@ -118,6 +127,6 @@ class Day03 extends ChallengeBase
             $lines = $keep;
         }
 
-        return 0;
+        return '0';
     }
 }

@@ -8,7 +8,8 @@ use Joky\AdventOfCode\Challenges\ChallengeBase;
 
 class Day05 extends ChallengeBase
 {
-    private $grid = [];
+    /** @var array<int, array<int, int>> */
+    private array $grid = [];
 
     public function partOne(): string
     {
@@ -127,7 +128,7 @@ class Day05 extends ChallengeBase
         echo \PHP_EOL;
     }
 
-    private function drawVertical($x, $y1, $y2)
+    private function drawVertical(int $x, int $y1, int $y2): int
     {
         $overlap = 0;
         for ($y = $y1; $y <= $y2; ++$y) {
@@ -148,7 +149,7 @@ class Day05 extends ChallengeBase
         return (string) $overlap;
     }
 
-    private function drawHorizontal($y, $x1, $x2)
+    private function drawHorizontal(int $y, int $x1, int $x2): int
     {
         $overlap = 0;
         for ($x = $x1; $x <= $x2; ++$x) {
@@ -169,7 +170,7 @@ class Day05 extends ChallengeBase
         return (string) $overlap;
     }
 
-    private function drawDiagonal($x1, $y1, $x2, $y2)
+    private function drawDiagonal(int $x1, int $y1, int $x2, int $y2): int
     {
         $overlap = 0;
 
