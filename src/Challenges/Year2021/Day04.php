@@ -36,10 +36,12 @@ class Day04 extends ChallengeBase
                 echo $grid;
 
                 if ($grid->isWin()) {
-                    return $number * $grid->getScore();
+                    return (string) ($number * $grid->getScore());
                 }
             }
         }
+
+        return '0';
     }
 
     public function partTwo(): string
@@ -74,7 +76,7 @@ class Day04 extends ChallengeBase
                 // last grid
                 if (1 === \count($grids)) {
                     if ($grid->isWin()) {
-                        return $number * $grid->getScore();
+                        return (string) ($number * $grid->getScore());
                     }
                 } else {
                     if (!$grid->isWin()) {
@@ -85,6 +87,8 @@ class Day04 extends ChallengeBase
 
             $grids = $loosing_grid;
         }
+
+        return '0';
     }
 }
 

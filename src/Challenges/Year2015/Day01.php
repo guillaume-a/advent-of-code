@@ -31,8 +31,10 @@ class Day01 extends ChallengeBase
             $floor += '(' === $direction ? 1 : -1;
 
             if (-1 === $floor) {
-                return $position + 1;
+                return (string) ($position + 1);
             }
         }
+
+        return '0';
     }
 }
