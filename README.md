@@ -1,4 +1,4 @@
-# Advent of Code
+# 🎄 Advent of Code
 
 This is my attempt to solve [Advent of Code](https://adventofcode.com/) puzzles in PHP.
 
@@ -6,88 +6,99 @@ This is my attempt to solve [Advent of Code](https://adventofcode.com/) puzzles 
 > 
 > This is just me trying to have fun solving puzzles. <3
 
-# Requirements
+## 📋 Requirements
 
-* Bash or Fish
 * Docker
-* PHP 8.5+
+* Make (optional, but recommended)
 
-# Setup
+## 🚀 Quick Start
 
-Bash
-```
-docker run --rm --interactive --tty --volume $(pwd):/app composer:latest install
-```
+### Installation
 
-Fish
-```
-docker run --rm --interactive --tty --volume (pwd):/app composer:latest install
+```bash
+make install
 ```
 
-# TODO 
-
-* makefile
-* fix-permission script
-
-# Run php script
-
-Bash
-```
-docker run --rm -ti -v $(pwd):/app/ php:8.5-cli php app/run.php <day> [--p2] [--year yyyy] [--custom]
+Or manually with Docker:
+```bash
+docker run --rm -ti --user $(id -u):$(id -g) --volume $(pwd):/app composer:latest install
 ```
 
-Fish
-```
-docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php
-```
+## 📖 Usage
 
-```
-Usage:
-  aoc:run [options] [--] <day>
+Run `make` or `make help` to see all available commands:
 
-Arguments:
-  day                   Which day do you want to launch ?
-
-Options:
-  -y, --year[=YEAR]     What year is it ? [default: "2021"]
-      --p2              Is it allready part 2 ?
-  -c, --custom          Do you want to use your custom input ?
+```bash
+make
 ```
 
-Examples :
+### Create a New Challenge
 
-Run Day 01, Part 1 for current year with example inputs : 
-```
-docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php 1
-```
-
-Run Day 01, Part 2 for current year with example inputs :
-```
-docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php 1 --p2
+```bash
+make new year=2025 day=01
 ```
 
-Run Day 01, Part 2 for current year with `custom` inputs:
-```
-docker run --rm -ti -v (pwd):/app/ php:8.5-cli php app/run.php 1 --p2 --custom
-```
+This will create:
+- Challenge class: `src/Challenges/Year_2025/Day_01.php`
+- Example input: `inputs/example/01.txt`
+- Custom input: `inputs/custom/01.txt`
+- Entry in `answers.json`
 
-# Inputs
+### Run a Challenge
 
-In the `resources` folder, inputs are named with the following pattern : 
-
-```
-/[YYYY]/[example|custom]/inputs/[DD].txt
-/[YYYY]/[example|custom]/answers/[DD]-[part].txt
+```bash
+make run year=2025 day=01
 ```
 
-#Answers
+Or manually with Docker:
+```bash
+docker run --rm -ti --user $(id -u):$(id -g) -v $(pwd):/app/ php:8.5-cli php app/run.php aoc:run 2025 01
+```
 
-Beide the inputs folder, there is a anwsers.json wwith example answers. You can duplicate it into the custom with correct answers. If you want to refactor code after, you'll still have the correct answers somewhere.
+### Fix Code Style
 
-# Challenges
+```bash
+make fix
+```
 
-Each challenge must implements `ChallengeInterface`
+## 📁 Project Structure
 
-And be in the class corresponding to its year/day
+### Inputs
 
-`Joky\AdventOfCode\Challenges\Year_[YYYY]\Day_[DD]`
+Inputs are organized in the following structure:
+
+```
+inputs/
+├── example/          # Example inputs from the puzzle description
+│   └── 01.txt
+└── custom/           # Your personal puzzle inputs
+    └── 01.txt
+```
+
+### Answers
+
+The `answers.json` file contains expected answers for validation:
+- **example**: Answers from the puzzle description examples
+- **custom**: Your personal puzzle answers (for regression testing after refactoring)
+
+### Challenges
+
+Each challenge must:
+- Implement `ChallengeInterface`
+- Be in the namespace: `Joky\AdventOfCode\Challenges\Year_[YYYY]\Day_[DD]`
+- Implement methods: `partOne()` and `partTwo()`
+
+Example:
+```php
+namespace Joky\AdventOfCode\Challenges\Year_2025;
+
+class Day_01 implements ChallengeInterface
+{
+    public function partOne(): string { /* ... */ }
+    public function partTwo(): string { /* ... */ }
+}
+```
+
+## 🛠️ Development
+
+All commands are available through the Makefile. Run `make` to see the full list of available commands with descriptions.
