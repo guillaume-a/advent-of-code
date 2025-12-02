@@ -6,12 +6,10 @@ require __DIR__.'/vendor/autoload.php';
 use Joky\AdventOfCode\Command\RunCommand;
 use Symfony\Component\Console\Application;
 
-$application = new Application('aoc', '1.0.0');
+$application = new Application('aoc', '1.1.0');
 
-$command = new RunCommand();
-
-$application->add($command);
-$application->setDefaultCommand($command->getName(), true);
+$application->addCommand(new RunCommand());
+$application->setDefaultCommand('aoc:run', true);
 
 try {
     $application->run();
