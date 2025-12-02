@@ -1,60 +1,73 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Joky\AdventOfCode\Challenges\Year2015;
 
 use Joky\AdventOfCode\Challenges\ChallengeBase;
 
-class Day03 extends ChallengeBase {
+class Day03 extends ChallengeBase
+{
+    public function partOne(): string
+    {
+        $houses = ['0-0'];
+        $x = 0;
+        $y = 0;
 
-  public function partOne(): string {
-    $houses = ['0-0'];
-    $x = 0;
-    $y = 0;
+        foreach (str_split(reset($this->lines)) as $direction) {
+            switch ($direction) {
+                case '^': $y--;
+                    break;
+                case 'v': $y++;
+                    break;
+                case '<': $x--;
+                    break;
+                case '>': $x++;
+                    break;
+            }
+            $coords = $x.'-'.$y;
+            $houses[] = $coords;
+        }
 
-    foreach(str_split(reset($this->lines)) as $direction) {
-      switch ($direction) {
-        case '^': $y--; break;
-        case 'v': $y++; break;
-        case '<': $x--; break;
-        case '>': $x++; break;
-      }
-      $coords = $x . '-' . $y;
-      $houses[] = $coords;
+        return \count(array_unique($houses));
     }
 
-    return count(array_unique($houses));
-  }
+    public function partTwo(): string
+    {
+        $houses = ['0-0'];
 
-  public function partTwo(): string {
-    $houses = ['0-0'];
+        $turn = 0;
+        $positions = [
+            ['x' => 0, 'y' => 0],
+            ['x' => 0, 'y' => 0],
+        ];
 
-    $turn = 0;
-    $positions = [
-      ['x' => 0, 'y' => 0],
-      ['x' => 0, 'y' => 0]
-    ];
+        foreach (str_split(reset($this->lines)) as $direction) {
+            $x = $positions[$turn]['x'];
+            $y = $positions[$turn]['y'];
 
-    foreach(str_split(reset($this->lines)) as $direction) {
+            switch ($direction) {
+                case '^': $y--;
+                    break;
+                case 'v': $y++;
+                    break;
+                case '<': $x--;
+                    break;
+                case '>': $x++;
+                    break;
+            }
 
-      $x = $positions[$turn]['x'];
-      $y = $positions[$turn]['y'];
+            $positions[$turn] = ['x' => $x, 'y' => $y];
 
-      switch ($direction) {
-        case '^': $y--; break;
-        case 'v': $y++; break;
-        case '<': $x--; break;
-        case '>': $x++; break;
-      }
+            $coords = $x.'-'.$y;
+            $houses[] = $coords;
 
-      $positions[$turn] = ['x' => $x, 'y' => $y];
+            ++$turn;
+            if (2 === $turn) {
+                $turn = 0;
+            }
+        }
 
-      $coords = $x . '-' . $y;
-      $houses[] = $coords;
-
-      $turn++;
-      if($turn === 2) $turn = 0;
+        return \count(array_unique($houses));
     }
-
-    return count(array_unique($houses));
-  }
 }

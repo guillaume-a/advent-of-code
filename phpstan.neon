@@ -1,9 +1,4 @@
-includes:
-    - vendor/phpstan/phpstan-symfony/extension.neon
-
 parameters:
     level: max
     paths:
         - src
-    symfony:
-        console_application_loader: run.php

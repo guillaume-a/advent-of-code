@@ -1,106 +1,112 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Joky\AdventOfCode\Challenges\Year2021;
 
 use Joky\AdventOfCode\Challenges\ChallengeBase;
 
-class Day09 extends ChallengeBase {
+class Day09 extends ChallengeBase
+{
+    private $bigLine;
+    private $width;
+    private $size;
+    private $anwser;
 
-  private $bigLine;
-  private $width;
-  private $size;
-  private $anwser;
-
-  private function prepare() {
-    $this->width = strlen($this->lines[0]);
-    $this->bigLine = implode('', $this->lines);
-    $this->size = strlen($this->bigLine);
-    $this->anwser = 0;
-  }
-
-  public function partOne(): string {
-
-    $this->prepare();
-
-    foreach(str_split($this->bigLine) as $position => $depth) {
-      $left = ($position >= 1) ? (int) substr($this->bigLine, $position - 1, 1) : 10;
-      $right = ($position < $this->size - 1) ? (int) substr($this->bigLine, $position + 1, 1) : 10;
-      $up = ($position >= $this->width) ? (int) substr($this->bigLine, $position - $this->width, 1) : 10;
-      $down = ($position < $this->size - $this->width) ? (int) substr($this->bigLine, $position + $this->width, 1) : 10;
-
-      if(
-        $depth < $left
-        && $depth < $right
-        && $depth < $up
-        && $depth < $down
-      ) {
-        $this->anwser += (int) $depth + 1;
-      }
-
+    private function prepare()
+    {
+        $this->width = \strlen($this->lines[0]);
+        $this->bigLine = implode('', $this->lines);
+        $this->size = \strlen($this->bigLine);
+        $this->anwser = 0;
     }
 
-    return $this->anwser;
-  }
+    public function partOne(): string
+    {
+        $this->prepare();
 
-  public function partTwo(): string {
+        foreach (str_split($this->bigLine) as $position => $depth) {
+            $left = ($position >= 1) ? (int) substr($this->bigLine, $position - 1, 1) : 10;
+            $right = ($position < $this->size - 1) ? (int) substr($this->bigLine, $position + 1, 1) : 10;
+            $up = ($position >= $this->width) ? (int) substr($this->bigLine, $position - $this->width, 1) : 10;
+            $down = ($position < $this->size - $this->width) ? (int) substr($this->bigLine, $position + $this->width, 1) : 10;
 
-    $this->prepare();
+            if (
+                $depth < $left
+                && $depth < $right
+                && $depth < $up
+                && $depth < $down
+            ) {
+                $this->anwser += (int) $depth + 1;
+            }
+        }
 
-    $explored = [];
-    $basins = [];
-    $position = 0;
-
-    do {
-      if (!in_array($position, $explored)) {
-
-        $basin = $this->exploreBasin($position);
-
-        $basins[] = count($basin);
-        $explored = array_merge($explored, $basin);
-
-        sort($basin);
-        sort($explored);
-      }
-
-    } while ($position++ < $this->size - 1);
-
-    sort($basins);
-
-    return array_pop($basins) * array_pop($basins) * array_pop($basins);
-  }
-
-  private function exploreBasin($position, &$basin = []): array {
-    //Allready explored
-    if(in_array($position, $basin)) {
-      return [];
+        return $this->anwser;
     }
 
-    $depth = (int) substr($this->bigLine, $position, 1);
+    public function partTwo(): string
+    {
+        $this->prepare();
 
-    //Find a wall, stop here
-    if($depth === 9)
-      return [];
+        $explored = [];
+        $basins = [];
+        $position = 0;
 
-    //Add current position to basin
-    $basin[] = $position;
+        do {
+            if (!\in_array($position, $explored)) {
+                $basin = $this->exploreBasin($position);
 
-    //Explore each directions
-    //Left
-    if ($position % $this->width > 0)
-      $basin += $this->exploreBasin($position - 1, $basin);
+                $basins[] = \count($basin);
+                $explored = array_merge($explored, $basin);
 
-    //Right
-    if ($position % $this->width < $this->width - 1)
-      $basin += $this->exploreBasin($position + 1, $basin);
+                sort($basin);
+                sort($explored);
+            }
+        } while ($position++ < $this->size - 1);
 
-    //Up
-    if ($position >= $this->width)
-      $basin += $this->exploreBasin($position - $this->width, $basin);
+        sort($basins);
 
-    //Down
-    if ($position < $this->size - $this->width)
-      $basin += $this->exploreBasin($position + $this->width, $basin);
+        return array_pop($basins) * array_pop($basins) * array_pop($basins);
+    }
 
-    return $basin;
-  }
+    private function exploreBasin($position, &$basin = []): array
+    {
+        // Allready explored
+        if (\in_array($position, $basin)) {
+            return [];
+        }
+
+        $depth = (int) substr($this->bigLine, $position, 1);
+
+        // Find a wall, stop here
+        if (9 === $depth) {
+            return [];
+        }
+
+        // Add current position to basin
+        $basin[] = $position;
+
+        // Explore each directions
+        // Left
+        if ($position % $this->width > 0) {
+            $basin += $this->exploreBasin($position - 1, $basin);
+        }
+
+        // Right
+        if ($position % $this->width < $this->width - 1) {
+            $basin += $this->exploreBasin($position + 1, $basin);
+        }
+
+        // Up
+        if ($position >= $this->width) {
+            $basin += $this->exploreBasin($position - $this->width, $basin);
+        }
+
+        // Down
+        if ($position < $this->size - $this->width) {
+            $basin += $this->exploreBasin($position + $this->width, $basin);
+        }
+
+        return $basin;
+    }
 }
