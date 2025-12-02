@@ -24,9 +24,9 @@ class Day07 extends ChallengeBase
         $p = 50;
         $r = ($p / 100) * ($n - 1) + 1;
 
-        $percentile = $values[floor($r)];
+        $percentile = $values[(int) floor($r)];
 
-        return array_reduce($values, function ($fuel, $position) use ($percentile) {
+        return (string) array_reduce($values, function ($fuel, $position) use ($percentile) {
             return $fuel + abs((int) $position - (int) $percentile);
         }, 0);
     }
@@ -49,6 +49,6 @@ class Day07 extends ChallengeBase
             $min_fuel = min($min_fuel, $fuel);
         }
 
-        return $min_fuel;
+        return (string) $min_fuel;
     }
 }

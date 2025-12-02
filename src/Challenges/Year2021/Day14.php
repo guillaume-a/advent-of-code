@@ -72,7 +72,7 @@ class Day14 extends ChallengeBase
         $most = array_pop($count);
         $least = array_shift($count);
 
-        return $most - $least;
+        return (string) ($most - $least);
     }
 
     public function partTwo(): string
@@ -172,6 +172,6 @@ class Day14 extends ChallengeBase
         $most = array_pop($scores);
         $least = array_shift($scores);
 
-        return $most - $least;
+        return (string) ($most - $least);
     }
 }

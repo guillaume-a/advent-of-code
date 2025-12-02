@@ -93,7 +93,7 @@ class Day17 extends ChallengeBase
 
         // var_dump($success);
 
-        return $answer;
+        return (string) $answer;
     }
 
     public function partTwo(): string
@@ -125,6 +125,6 @@ class Day17 extends ChallengeBase
             }
         }
 
-        return \count($success);
+        return (string) \count($success);
     }
 }

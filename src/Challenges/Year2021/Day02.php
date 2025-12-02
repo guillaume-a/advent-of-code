@@ -29,7 +29,7 @@ class Day02 extends ChallengeBase
             }
         }
 
-        return (string) $x * $y;
+        return (string) ($x * $y);
     }
 
     public function partTwo(): string
@@ -55,6 +55,6 @@ class Day02 extends ChallengeBase
             }
         }
 
-        return (string) $x * $y;
+        return (string) ($x * $y);
     }
 }

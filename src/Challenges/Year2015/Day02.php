@@ -22,7 +22,7 @@ class Day02 extends ChallengeBase
             $total += min($l * $w, $w * $h, $h * $l);
         }
 
-        return $total;
+        return (string) $total;
     }
 
     public function partTwo(): string
@@ -41,6 +41,6 @@ class Day02 extends ChallengeBase
             $total += $side1 * $side2 * $side3;
         }
 
-        return $total;
+        return (string) $total;
     }
 }

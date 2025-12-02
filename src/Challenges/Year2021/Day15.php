@@ -62,11 +62,11 @@ class Day15 extends ChallengeBase
             echo \PHP_EOL;
         }
 
-        return $result;
+        return (string) $result;
     }
 
     public function partTwo(): string
     {
-        return 0;
+        return '0';
     }
 }

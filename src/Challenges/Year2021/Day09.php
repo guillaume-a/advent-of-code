@@ -41,7 +41,7 @@ class Day09 extends ChallengeBase
             }
         }
 
-        return $this->anwser;
+        return (string) $this->anwser;
     }
 
     public function partTwo(): string
@@ -66,7 +66,7 @@ class Day09 extends ChallengeBase
 
         sort($basins);
 
-        return array_pop($basins) * array_pop($basins) * array_pop($basins);
+        return (string) (array_pop($basins) * array_pop($basins) * array_pop($basins));
     }
 
     private function exploreBasin($position, &$basin = []): array

@@ -40,7 +40,7 @@ class Day08 extends ChallengeBase
             }));
         }
 
-        return $anwser;
+        return (string) $anwser;
     }
 
     public function partTwo(): string
@@ -130,7 +130,7 @@ class Day08 extends ChallengeBase
             $anwser += (int) $number;
         }
 
-        return $anwser;
+        return (string) $anwser;
     }
 
     private function findByLength($digits, $length): array

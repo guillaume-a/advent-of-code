@@ -86,7 +86,7 @@ class Day11 extends ChallengeBase
             --$steps;
         }
 
-        return $score;
+        return (string) $score;
     }
 
     public function partTwo(): string
@@ -119,7 +119,7 @@ class Day11 extends ChallengeBase
             ++$step;
 
             if (\count($this->dayFlashes) == $size) {
-                return $step;
+                return (string) $step;
             }
         }
     }

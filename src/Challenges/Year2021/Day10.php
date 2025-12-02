@@ -57,7 +57,7 @@ class Day10 extends ChallengeBase
             }
         }
 
-        return $score;
+        return (string) $score;
     }
 
     public function partTwo(): string
@@ -103,6 +103,6 @@ class Day10 extends ChallengeBase
 
         sort($scores);
 
-        return $scores[floor(\count($scores) / 2)];
+        return (string) $scores[(int) floor(\count($scores) / 2)];
     }
 }
