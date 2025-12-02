@@ -189,6 +189,9 @@ class Day18 extends ChallengeBase
         return $newNumber;
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     private function magnitude($number): int
     {
         return 0;
