@@ -107,9 +107,6 @@ class Cell implements \Stringable
         return $this->value;
     }
 
-    /**
-     * @return bool
-     */
     public function isScored(): bool
     {
         return $this->scored;

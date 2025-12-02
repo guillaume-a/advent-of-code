@@ -32,10 +32,10 @@ class RunCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $dayArg = $input->getArgument('day');
-        assert(is_string($dayArg) || is_int($dayArg));
+        \assert(\is_string($dayArg) || \is_int($dayArg));
         $this->day = str_pad((string) $dayArg, 2, '0', \STR_PAD_LEFT);
         $year = $input->getOption('year');
-        assert(is_string($year) || is_int($year));
+        \assert(\is_string($year) || \is_int($year));
         $this->part = $input->getOption('p2') ? '2' : '1';
         $this->puzzleInput = $input->getOption('custom') ? 'custom' : 'example';
         $this->resourceDir = \sprintf(__DIR__.'/../Challenges/Year%s/inputs', $year);
@@ -60,7 +60,7 @@ class RunCommand extends Command
 
         $content = file_get_contents($inputFilename);
         /** @var \Joky\AdventOfCode\Challenges\ChallengeInterface $challenge */
-        $challenge = new $class(explode(\PHP_EOL, rtrim($content !== false ? $content : '')));
+        $challenge = new $class(explode(\PHP_EOL, rtrim(false !== $content ? $content : '')));
         $methodName = '1' === $this->part ? 'partOne' : 'partTwo';
         $answer = $challenge->$methodName();
 
@@ -81,9 +81,9 @@ class RunCommand extends Command
         }
 
         $content = file_get_contents($answerFilename);
-        $answers = json_decode($content !== false ? $content : '', true);
+        $answers = json_decode(false !== $content ? $content : '', true);
 
-        if (!is_array($answers)) {
+        if (!\is_array($answers)) {
             return;
         }
 
@@ -92,7 +92,7 @@ class RunCommand extends Command
         }
 
         $dayAnswer = $answers[$this->day];
-        if (!is_array($dayAnswer) || !\array_key_exists('part'.$this->part, $dayAnswer)) {
+        if (!\is_array($dayAnswer) || !\array_key_exists('part'.$this->part, $dayAnswer)) {
             return;
         }
 
@@ -101,7 +101,7 @@ class RunCommand extends Command
         if ($expectedAnswer == $answer) {
             $output->writeln('<info>Answer is correct !</info>');
         } else {
-            $expectedString = is_scalar($expectedAnswer) ? (string) $expectedAnswer : json_encode($expectedAnswer);
+            $expectedString = \is_scalar($expectedAnswer) ? (string) $expectedAnswer : json_encode($expectedAnswer);
             $output->writeln('Answer is not correct. Expected : <comment>'.$expectedString.'</comment>');
         }
     }

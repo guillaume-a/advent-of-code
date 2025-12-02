@@ -25,9 +25,9 @@ class NewCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $year = $input->getArgument('year');
-        assert(is_string($year));
+        \assert(\is_string($year));
         $dayArg = $input->getArgument('day');
-        assert(is_string($dayArg) || is_int($dayArg));
+        \assert(\is_string($dayArg) || \is_int($dayArg));
         $day = str_pad((string) $dayArg, 2, '0', \STR_PAD_LEFT);
 
         $yearDir = \sprintf(__DIR__.'/../Challenges/Year%s', $year);
@@ -80,12 +80,12 @@ class NewCommand extends Command
         $answersFile = \sprintf('%s/answers.json', $exampleDir);
         if (file_exists($answersFile)) {
             $content = file_get_contents($answersFile);
-            $answers = json_decode($content !== false ? $content : '', true);
+            $answers = json_decode(false !== $content ? $content : '', true);
         } else {
             $answers = [];
         }
 
-        if (!is_array($answers)) {
+        if (!\is_array($answers)) {
             $answers = [];
         }
 
