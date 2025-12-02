@@ -11,9 +11,9 @@ RESET  := \033[0m
 # Docker shortcuts
 DOCKER_USER := --user $$(id -u):$$(id -g)
 DOCKER_VOL  := -v $$(pwd):/app
-DOCKER_RUN  := docker run --rm -ti $(DOCKER_USER) $(DOCKER_VOL)
-PHP         := $(DOCKER_RUN) php:8.5-cli
-COMPOSER    := $(DOCKER_RUN) composer:latest
+DOCKER_RUN  := docker run --rm
+PHP         := $(DOCKER_RUN) $(DOCKER_USER) $(DOCKER_VOL) -w /app php:8.5-cli
+COMPOSER    := $(DOCKER_RUN) $(DOCKER_USER) $(DOCKER_VOL) composer:latest
 
 .DEFAULT_GOAL := help
 
