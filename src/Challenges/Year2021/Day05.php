@@ -108,6 +108,9 @@ class Day05 extends ChallengeBase
         return (string) $overlap;
     }
 
+    /**
+     * @phpstan-ignore-next-line
+     */
     private function draw($w, $h)
     {
         for ($y = 0; $y <= $h; ++$y) {

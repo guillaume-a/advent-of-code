@@ -8,6 +8,9 @@ use Joky\AdventOfCode\Challenges\ChallengeBase;
 
 class Day07 extends ChallengeBase
 {
+    /**
+     * @phpstan-ignore-next-line
+     */
     private $tree = [
         /*
       '/' => [
