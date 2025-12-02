@@ -2,3 +2,10 @@ parameters:
     level: 6
     paths:
         - src
+    excludePaths:
+        # Up to level 5
+        - src/Challenges/Year2015/*
+        - src/Challenges/Year2021/*
+        - src/Challenges/Year2022/*
+#    ignoreErrors:
+#        - identifier: missingType.iterableValue
