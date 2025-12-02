@@ -22,10 +22,10 @@ class RunCommand extends Command
     protected function configure(): void
     {
         $this
+          ->addArgument('year', InputArgument::REQUIRED, 'What year is it ?')
           ->addArgument('day', InputArgument::REQUIRED, 'Which day do you want to launch ?')
-          ->addOption('year', 'y', InputOption::VALUE_OPTIONAL, 'What year is it ?', date('Y'))
+          ->addArgument('inputs', InputArgument::OPTIONAL, 'Do you want to use your custom input ?', 'example')
           ->addOption('p2', null, InputOption::VALUE_NONE, 'Is it allready part 2 ?')
-          ->addOption('custom', 'c', InputOption::VALUE_NONE, 'Do you want to use your custom input ?')
         ;
     }
 
@@ -34,10 +34,12 @@ class RunCommand extends Command
         $dayArg = $input->getArgument('day');
         \assert(\is_string($dayArg) || \is_int($dayArg));
         $this->day = str_pad((string) $dayArg, 2, '0', \STR_PAD_LEFT);
-        $year = $input->getOption('year');
+        $year = $input->getArgument('year');
         \assert(\is_string($year) || \is_int($year));
         $this->part = $input->getOption('p2') ? '2' : '1';
-        $this->puzzleInput = $input->getOption('custom') ? 'custom' : 'example';
+        $inputsArg = $input->getArgument('inputs');
+        \assert(\is_string($inputsArg));
+        $this->puzzleInput = $inputsArg;
         $this->resourceDir = \sprintf(__DIR__.'/../Challenges/Year%s/inputs', $year);
 
         $class = \sprintf('Joky\\AdventOfCode\\Challenges\\Year%s\\Day%s',
@@ -64,7 +66,7 @@ class RunCommand extends Command
         $methodName = '1' === $this->part ? 'partOne' : 'partTwo';
         $answer = $challenge->$methodName();
 
-        $output->writeln('Your answer is : <info>'.$answer.'</info>');
+        $output->writeln('Your answer is : <info>['.$answer.']</info>');
 
         $this->testAnswer($output, $answer);
 
@@ -102,7 +104,7 @@ class RunCommand extends Command
             $output->writeln('<info>Answer is correct !</info>');
         } else {
             $expectedString = \is_scalar($expectedAnswer) ? (string) $expectedAnswer : json_encode($expectedAnswer);
-            $output->writeln('Answer is not correct. Expected : <comment>'.$expectedString.'</comment>');
+            $output->writeln('Answer is not correct. Expected : <comment>['.$expectedString.']</comment>');
         }
     }
 }
