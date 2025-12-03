@@ -45,7 +45,41 @@ class Day03 extends ChallengeBase
 
     public function partTwo(): string
     {
-        // TODO: Implement partTwo
-        return '';
+        $sum = 0;
+
+        foreach ($this->lines as $bank) {
+            echo $bank.\PHP_EOL;
+
+            $strings = str_split($bank);
+
+            $batteries = array_map(fn ($b) => (int) $b, $strings);
+
+            $remaining = 12;
+            $joltage = 0;
+            $startIndex = 0;
+
+            while ($remaining > 0) {
+                // echo '$remaining: '.$remaining.' - '.PHP_EOL;
+                $biggest = 0;
+                $remaining--;
+
+                // echo 'searching biggest in ' . substr($bank, $startIndex, count($batteries) - $remaining) . PHP_EOL;
+
+                for ($i = $startIndex; $i < \count($batteries) - $remaining; ++$i) {
+                    if ($batteries[$i] > $biggest) {
+                        $biggest = $batteries[$i];
+                        $startIndex = $i + 1;
+                    }
+                }
+
+                // echo 'found '.$biggest.' @ '.$startIndex . ' - ' .$joltage.\PHP_EOL;
+
+                $joltage += $biggest * 10 ** $remaining;
+            }
+
+            $sum += $joltage;
+        }
+
+        return (string) $sum;
     }
 }
