@@ -61,7 +61,7 @@ class Day03 extends ChallengeBase
             while ($remaining > 0) {
                 // echo '$remaining: '.$remaining.' - '.PHP_EOL;
                 $biggest = 0;
-                $remaining--;
+                --$remaining;
 
                 // echo 'searching biggest in ' . substr($bank, $startIndex, count($batteries) - $remaining) . PHP_EOL;
 
