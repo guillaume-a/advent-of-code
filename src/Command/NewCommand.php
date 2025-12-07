@@ -77,26 +77,28 @@ class NewCommand extends Command
         }
 
         // Create or update answers.json
-        $answersFile = \sprintf('%s/answers.json', $exampleDir);
-        if (file_exists($answersFile)) {
-            $content = file_get_contents($answersFile);
-            $answers = json_decode(false !== $content ? $content : '', true);
-        } else {
-            $answers = [];
-        }
+        foreach ([$exampleDir, $customDir] as $dir) {
+            $answersFile = \sprintf('%s/answers.json', $dir);
+            if (file_exists($answersFile)) {
+                $content = file_get_contents($answersFile);
+                $answers = json_decode(false !== $content ? $content : '', true);
+            } else {
+                $answers = [];
+            }
 
-        if (!\is_array($answers)) {
-            $answers = [];
-        }
+            if (!\is_array($answers)) {
+                $answers = [];
+            }
 
-        if (!\array_key_exists($day, $answers)) {
-            $answers[$day] = [
-                'part1' => '',
-                'part2' => '',
-            ];
-            ksort($answers);
-            file_put_contents($answersFile, json_encode($answers, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES).\PHP_EOL);
-            $output->writeln('<info>Updated answers.json</info>');
+            if (!\array_key_exists($day, $answers)) {
+                $answers[$day] = [
+                    'part1' => '',
+                    'part2' => '',
+                ];
+                ksort($answers);
+                file_put_contents($answersFile, json_encode($answers, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES).\PHP_EOL);
+                $output->writeln('<info>Updated answers.json</info>');
+            }
         }
 
         $output->writeln(\sprintf('<comment>Boilerplate created for Year %s, Day %s</comment>', $year, $day));
